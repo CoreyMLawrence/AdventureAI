@@ -2,6 +2,21 @@
 
 Welcome to AdventureAI, the humorous choose-your-own-adventure game powered by Google's Gemini AI! Get ready to embark on an interactive journey filled with laughter, excitement, and unexpected twists. In this game, you'll explore various settings, encounter quirky characters, wield unique weapons, and enlist the help of sidekicks, all while experiencing a new story every time you play.
 
+## Screenshots
+
+**Start Screen**
+   ![Start Screen](./Screenshots/1.png)
+
+**Select Your Character**
+   ![Select Your Character](./Screenshots/2.png)
+
+**Game Play**
+   ![Game Play](./Screenshots/3.png)
+
+**History**
+   ![History](./Screenshots/4.png)
+
+
 ## How to Play
 
 1. **Choose Your Settings**: Select your character, weapon, sidekick, and setting to start your adventure.
