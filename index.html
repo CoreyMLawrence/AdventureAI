@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="./favicon.png" sizes="any" type="image/png" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AdventureAI</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1,
+    maximum-scale=1, user-scalable=no"
+    />
+    <meta name="apple-mobile-web-app-standalone" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-fullscreen" content="yes" />
+    <link rel="apple-touch-icon" sizes="128x128" href="icon-128.png" />
+    <meta name="apple-mobile-web-app-title" content="AdventureAI" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  </head>
+  <body>
+    <div id="background" style="background-image: url('background2.jpg'); background-size: 100% auto; "></div>
+    <div id="title">
+      <h1>AdventureAI</h1>
+      <h2 style="margin-top: -2em">Your Epic Journey Starts Now</h2>
+      <a href="./character.html" id="startButton">BEGIN</a>
+    </div>
+    <!-- Placeholder for generated image -->
+    <div id="generatedText"></div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Clear session storage on page load
+        sessionStorage.clear();
+      });
+    </script>
+  </body>
+</html>

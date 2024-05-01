@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="./favicon.png" sizes="any" type="image/png" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-standalone" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-fullscreen" content="yes" />
+    <link rel="apple-touch-icon" sizes="128x128" href="icon-128.png" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>AdventureAI</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+    />
+  </head>
+  <body style="overflow: auto">
+    <audio id="audio" mute="true" ="src" ="" type="audio/mpeg"></audio>
+    <div id="background"></div>
+    <div id="response">
+      <svg
+        id="mute"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-volume-off"
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#ffffff"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M15 8a5 5 0 0 1 1.912 4.934m-1.377 2.602a5 5 0 0 1 -.535 .464"
+        />
+        <path
+          d="M17.7 5a9 9 0 0 1 2.362 11.086m-1.676 2.299a9 9 0 0 1 -.686 .615"
+        />
+        <path
+          d="M9.069 5.054l.431 -.554a.8 .8 0 0 1 1.5 .5v2m0 4v8a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l1.294 -1.664"
+        />
+        <path d="M3 3l18 18" />
+      </svg>
+      <svg
+        id="unmute"
+        class="noDisplay"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-volume"
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#ffffff"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M15 8a5 5 0 0 1 0 8" />
+        <path d="M17.7 5a9 9 0 0 1 0 14" />
+        <path
+          d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5"
+        />
+      </svg>
+      <svg
+        id="history"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-history"
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#ffffff"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 8l0 4l2 2" />
+        <path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5" />
+      </svg>
+      <svg
+        id="home"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-home"
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#ffffff"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+      </svg>
+      <div class="playCircleRow">
+        <img id="character" class="playCircleImage" />
+        <img id="weapon" class="playCircleImage" />
+        <img id="sidekick" class="playCircleImage" />
+      </div>
+      <div id="story"></div>
+      <div id="options">
+        <div class="option noDisplay" id="option1"></div>
+        <div class="option noDisplay" id="option2"></div>
+        <div class="option noDisplay" id="continue">Continue</div>
+      </div>
+    </div>
+
+    <script src="gemini.js" type="module"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Remove the 'character' variable from session storage on page load
+        sessionStorage.setItem(
+          'fullStory',
+          'this is the start of the story, the reader knows nothing. Introduce the characters and set the scene.  the story should focus heavily on the main character and how his character would behave in this setting'
+        );
+        console.log('full story removed');
+      });
+    </script>
+    <script>
+      // Define an event listener function for option clicks
+      function handleOptionClick1(event) {
+        option1Element.style.border = 'solid #990040 2px';
+        option1Element.style.color = '#990040';
+        // Get the clicked option's text content
+        const clickedOption = event.target.textContent.trim();
+
+        // Get the story content
+        const story = document.getElementById('story').textContent.trim();
+
+        // Append the story and clicked option to the session variable
+        sessionStorage.setItem(
+          'fullStory',
+          `${
+            sessionStorage.getItem('fullStory') || ''
+          }\n${story} - user's chosen option: ${clickedOption}`
+        );
+      }
+
+      function handleOptionClick2(event) {
+        option2Element.style.border = 'solid #990040 2px';
+        option2Element.style.color = '#990040';
+        // Get the clicked option's text content
+        const clickedOption = event.target.textContent.trim();
+
+        // Get the story content
+        const story = document.getElementById('story').textContent.trim();
+
+        // Append the story and clicked option to the session variable
+        sessionStorage.setItem(
+          'fullStory',
+          `${
+            sessionStorage.getItem('fullStory') || ''
+          }\n${story} - user's chosen option: ${clickedOption}`
+        );
+      }
+
+      function handleContinue() {
+        continueElement.style.border = 'solid #990040 2px';
+        continueElement.style.color = '#990040';
+      }
+
+      // Add event listeners to option elements
+      let option1Element = document.getElementById('option1');
+      option1Element.addEventListener('click', handleOptionClick1);
+
+      let option2Element = document.getElementById('option2');
+      option2Element.addEventListener('click', handleOptionClick2);
+
+      let continueElement = document.getElementById('continue');
+      continueElement.addEventListener('click', handleContinue);
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        let backgroundImage = document.getElementById('background');
+        let setting = sessionStorage.getItem('location');
+        let audio = document.getElementById('audio');
+        if (
+          setting ==
+          'bustling city in medieval europe filled with a variety of people, and a massive castle on the hill. The city has a multitude of shops, and may even have a city watch to keep the peace, which our main characters will probably disturb'
+        ) {
+          backgroundImage.style.backgroundImage =
+            'url(./3212groupProjectAIImages/medievalCityLarge.jpg)';
+        } else if (
+          setting ==
+          'busy cattle town in the american west in the wild west days. The town is filled with mostly good people, but a gang of cattle rustlers is always causing trouble'
+        ) {
+          backgroundImage.style.backgroundImage =
+            'url(./3212groupProjectAIImages/westernTownLarge.jpg)';
+        } else if (
+          setting ==
+          'A jungle which seems empty at first, but a tribe of jungle dwelling people are soon found. They are mostly good, but their witchdoctor could be a villan. This is yet to be seen. Also, a massive pyramid may be unveiled'
+        ) {
+          backgroundImage.style.backgroundImage =
+            'url(./3212groupProjectAIImages/jungleLarge.jpg)';
+        }
+      });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        let characterCircle = document.getElementById('character');
+        let weaponCircle = document.getElementById('weapon');
+        let sidekickCircle = document.getElementById('sidekick');
+
+        let characterSelection = sessionStorage.getItem('character');
+        let weaponSelection = sessionStorage.getItem('weapon');
+        let sidekickSelection = sessionStorage.getItem('databaseSidekick');
+        console.log(sidekickSelection);
+        //display character image
+        if (characterSelection == 'Wizard') {
+          characterCircle.src = './3212groupProjectAIImages/wizard.jpg';
+        } else if (characterSelection == 'Cowboy') {
+          characterCircle.src = './3212groupProjectAIImages/cowboy.jpg';
+        } else if (characterSelection == 'Tarzan') {
+          characterCircle.src = './3212groupProjectAIImages/tarzan.jpg';
+        }
+
+        //display weapon image
+        if (weaponSelection == 'Sword') {
+          weaponCircle.src = './3212groupProjectAIImages/sword.jpg';
+        } else if (weaponSelection == 'Revolver') {
+          weaponCircle.src = './3212groupProjectAIImages/revolver.jpg';
+        } else if (weaponSelection == 'Club') {
+          weaponCircle.src = './3212groupProjectAIImages/club.jpg';
+        }
+
+        //display sidekick image
+        if (sidekickSelection == 'Cowardly Giant') {
+          sidekickCircle.src = './3212groupProjectAIImages/cowardlyGiant.jpg';
+        } else if (sidekickSelection == 'Talking Dog') {
+          sidekickCircle.src = './3212groupProjectAIImages/talkingDog.jpg';
+        } else if (sidekickSelection == 'Dr. Williams') {
+          sidekickCircle.src = './3212groupProjectAIImages/drWilliams.jpg';
+        }
+      });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        let backgroundImage = document.getElementById('background');
+        let setting = sessionStorage.getItem('location');
+        let audio = document.getElementById('audio');
+
+        let muteButton = document.getElementById('mute');
+        let unmuteButton = document.getElementById('unmute');
+        muteButton.addEventListener('click', function () {
+          console.log('play');
+          document.getElementById('audio').play();
+          muteButton.classList.add('noDisplay');
+          muteButton.classList.remove('yesDisplay');
+          unmuteButton.classList.remove('noDisplay');
+          unmuteButton.classList.add('yesDisplay');
+        });
+
+        unmuteButton.addEventListener('click', function () {
+          console.log('pause');
+          document.getElementById('audio').pause();
+          muteButton.classList.add('yesDisplay');
+          muteButton.classList.remove('noDisplay');
+          unmuteButton.classList.remove('yesDisplay');
+          unmuteButton.classList.add('noDisplay');
+        });
+        if (
+          setting ==
+          'bustling city in medieval europe filled with a variety of people, and a massive castle on the hill. The city has a multitude of shops, and may even have a city watch to keep the peace, which our main characters will probably disturb'
+        ) {
+          audio.src = './music/Medieval.mp3';
+          //audio.play();
+        } else if (
+          setting ==
+          'busy cattle town in the american west in the wild west days. The town is filled with mostly good people, but a gang of cattle rustlers is always causing trouble'
+        ) {
+          audio.src = './music/West.mp3';
+          //audio.play();
+        } else if (
+          setting ==
+          'A jungle which seems empty at first, but a tribe of jungle dwelling people are soon found. They are mostly good, but their witchdoctor could be a villan. This is yet to be seen. Also, a massive pyramid may be unveiled'
+        ) {
+          audio.src = './music/Jungle.mp3';
+          //audio.play();
+        }
+      });
+    </script>
+    <script>
+      // Get the history button element
+      let historyButton = document.getElementById('history');
+
+      // Add event listener to the history button
+      historyButton.addEventListener('click', function () {
+        // Redirect to ./history.html
+        window.location.href = './history.html';
+      });
+    </script>
+    <script>
+      // Get the history button element
+      let homeButton = document.getElementById('home');
+
+      // Add event listener to the history button
+      homeButton.addEventListener('click', function () {
+        window.location.href = './';
+      });
+    </script>
+  </body>
+</html>

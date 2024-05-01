@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="./favicon.png" sizes="any" type="image/png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-standalone" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-fullscreen" content="yes" />
+    <link rel="apple-touch-icon" sizes="128x128" href="icon-128.png" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>Choose Your Sidekick</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const imageRow = document.querySelector('.imageRow');
+        imageRow.classList.add('fade-in');
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Remove the 'character' variable from session storage on page load
+        sessionStorage.removeItem('sidekick');
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Choose Your Trusty Sidekick</h1>
+
+    <div class="imageRow">
+      <div class="imageGroup">
+        <a href="./location.html">
+          <img
+            id="cowardlyGiant"
+            class="circleImage"
+            src="./3212groupProjectAIImages/cowardlyGiant.jpg"
+          />
+        </a>
+        <h2>Cowardly Giant</h2>
+      </div>
+      <div class="imageGroup">
+        <a href="./location.html">
+          <img
+            id="talkingDog"
+            class="circleImage"
+            src="./3212groupProjectAIImages/talkingDog.jpg"
+          />
+        </a>
+        <h2>Talking Dog</h2>
+      </div>
+      <div class="imageGroup">
+        <a href="./location.html">
+          <img
+            id="drWilliams"
+            class="circleImage"
+            src="./3212groupProjectAIImages/drWilliams.jpg"
+          />
+        </a>
+        <h2>Dr. Williams</h2>
+      </div>
+    </div>
+    <!-- <a href="./location.html" id="startButton">CONTINUE</a> -->
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Add event listener to each image
+        const images = document.querySelectorAll('.circleImage');
+        images.forEach(function (image) {
+          image.addEventListener('click', function () {
+            // Reset border color of all images to white
+            images.forEach(function (img) {
+              img.style.borderColor = 'white';
+            });
+
+            // Store the id of the clicked image in a session variable called 'character'
+            sessionStorage.setItem(
+              'sidekick',
+              (function (clickedImage) {
+                if (clickedImage.id === 'cowardlyGiant') {
+                  sessionStorage.setItem('databaseSidekick', 'Cowardly Giant');
+                  return 'cowardly giant  who has a funny catchphrase. You make up the catchphrase';
+                } else if (clickedImage.id === 'talkingDog') {
+                  sessionStorage.setItem('databaseSidekick', 'Talking Dog');
+                  return 'talking dog who has a funny catchphrase. You make up the catchphrase';
+                } else if (clickedImage.id === 'drWilliams') {
+                  sessionStorage.setItem('databaseSidekick', 'Dr. Williams');
+                  return 'Dr. Williams is a professor of computer science and his catchphrase is mission critical';
+                }
+              })(this) // Pass the clicked image element as an argument
+            );
+
+            console.log(sessionStorage.getItem('sidekick'));
+
+            // Change border color of clicked image
+            this.style.borderColor = '#4f0b27';
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

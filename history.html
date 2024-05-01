@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="./favicon.png" sizes="any" type="image/png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>History</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1,
+    maximum-scale=1, user-scalable=no"
+    />
+    <meta name="apple-mobile-web-app-standalone" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-fullscreen" content="yes" />
+    <link rel="apple-touch-icon" sizes="128x128" href="icon-128.png" />
+    <meta name="apple-mobile-web-app-title" content="AdventureAI" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  </head>
+  <body style="height: 120vh !important">
+    <audio id="audio" mute="true" ="src" ="" type="audio/mpeg"></audio>
+    <div id="historyBackground"></div>
+    <div style="z-index: 999; position: absolute; top: 2em">
+      <div id="controls">
+        <svg
+          id="previousButton"
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-arrow-narrow-left"
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#ffffff"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M5 12l14 0" />
+          <path d="M5 12l4 4" />
+          <path d="M5 12l4 -4" />
+        </svg>
+        <svg
+          id="mute"
+          style="position: static !important; margin-top: 5px"
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-volume-off"
+          width="30"
+          height="30"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#ffffff"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M15 8a5 5 0 0 1 1.912 4.934m-1.377 2.602a5 5 0 0 1 -.535 .464"
+          />
+          <path
+            d="M17.7 5a9 9 0 0 1 2.362 11.086m-1.676 2.299a9 9 0 0 1 -.686 .615"
+          />
+          <path
+            d="M9.069 5.054l.431 -.554a.8 .8 0 0 1 1.5 .5v2m0 4v8a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l1.294 -1.664"
+          />
+          <path d="M3 3l18 18" />
+        </svg>
+        <svg
+          id="unmute"
+          style="position: static !important; margin-top: 5px"
+          class="noDisplay"
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-volume"
+          width="30"
+          height="30"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#ffffff"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M15 8a5 5 0 0 1 0 8" />
+          <path d="M17.7 5a9 9 0 0 1 0 14" />
+          <path
+            d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5"
+          />
+        </svg>
+
+        <svg
+          id="home"
+          style="position: static !important; margin-top: 5px"
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-home"
+          width="30"
+          height="30"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#ffffff"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+          <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+          <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+        </svg>
+        <svg
+          id="nextButton"
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-arrow-narrow-right"
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#ffffff"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M5 12l14 0" />
+          <path d="M15 16l4 -4" />
+          <path d="M15 8l4 4" />
+        </svg>
+      </div>
+    </div>
+    <div id="historyResponse">
+      <div class="playCircleRow">
+        <img id="character" class="playCircleImage" />
+        <img id="weapon" class="playCircleImage" />
+        <img id="sidekick" class="playCircleImage" />
+      </div>
+      <div id="storyDisplay"></div>
+      <div id="options">
+        <div class="option noDisplay" id="option1"></div>
+        <div class="option noDisplay" id="option2"></div>
+        <div class="option noDisplay" id="continue">Continue</div>
+      </div>
+    </div>
+    <div id="title"></div>
+
+    <script>
+      let storyIndex = 0;
+
+      async function fetchStoryData(index) {
+        try {
+          const response = await fetch(`fetch_story.php?index=${index}`);
+          console.log('Response status:', response.status);
+          if (!response.ok) {
+            throw new Error('Failed to fetch story data from the server.');
+          }
+          const jsonData = await response.json();
+          console.log('Response data:', jsonData); // Log the response data
+          return jsonData;
+        } catch (error) {
+          console.error('An error occurred while fetching story data:', error);
+          return null;
+        }
+      }
+
+      async function displayStoryData(index) {
+        const data = await fetchStoryData(index);
+        if (data) {
+          let characterCircle = document.getElementById('character');
+          let weaponCircle = document.getElementById('weapon');
+          let sidekickCircle = document.getElementById('sidekick');
+
+          let characterSelection = data.characters;
+          let weaponSelection = data.weapon;
+          let sidekickSelection = data.sidekick;
+
+          if (characterSelection == 'Wizard') {
+            characterCircle.src = './3212groupProjectAIImages/wizard.jpg';
+          } else if (characterSelection == 'Cowboy') {
+            characterCircle.src = './3212groupProjectAIImages/cowboy.jpg';
+          } else if (characterSelection == 'Tarzan') {
+            characterCircle.src = './3212groupProjectAIImages/tarzan.jpg';
+          }
+
+          //display weapon image
+          if (weaponSelection == 'Sword') {
+            weaponCircle.src = './3212groupProjectAIImages/sword.jpg';
+          } else if (weaponSelection == 'Revolver') {
+            weaponCircle.src = './3212groupProjectAIImages/revolver.jpg';
+          } else if (weaponSelection == 'Club') {
+            weaponCircle.src = './3212groupProjectAIImages/club.jpg';
+          }
+
+          //display sidekick image
+          if (sidekickSelection == 'Cowardly Giant') {
+            sidekickCircle.src = './3212groupProjectAIImages/cowardlyGiant.jpg';
+          } else if (sidekickSelection == 'Talking Dog') {
+            sidekickCircle.src = './3212groupProjectAIImages/talkingDog.jpg';
+          } else if (sidekickSelection == 'Dr. Williams') {
+            sidekickCircle.src = './3212groupProjectAIImages/drWilliams.jpg';
+          }
+
+          let setting = data.setting;
+          console.log(setting);
+
+          let backgroundImage = document.getElementById('historyBackground');
+          let audio = document.getElementById('audio');
+
+          let muteButton = document.getElementById('mute');
+          let unmuteButton = document.getElementById('unmute');
+          muteButton.addEventListener('click', function () {
+            console.log('play');
+            document.getElementById('audio').play();
+            muteButton.classList.add('noDisplay');
+            muteButton.classList.remove('yesDisplay');
+            unmuteButton.classList.remove('noDisplay');
+            unmuteButton.classList.add('yesDisplay');
+          });
+
+          unmuteButton.addEventListener('click', function () {
+            console.log('pause');
+            document.getElementById('audio').pause();
+            muteButton.classList.add('yesDisplay');
+            muteButton.classList.remove('noDisplay');
+            unmuteButton.classList.remove('yesDisplay');
+            unmuteButton.classList.add('noDisplay');
+          });
+          if (setting == 'Medieval City') {
+            audio.src = './music/Medieval.mp3';
+            backgroundImage.style.backgroundImage =
+              'url(./3212groupProjectAIImages/medievalCityLarge.jpg)';
+            //audio.play();
+          } else if (setting == 'Western Town') {
+            audio.src = './music/West.mp3';
+            backgroundImage.style.backgroundImage =
+              'url(./3212groupProjectAIImages/westernTownLarge.jpg)';
+            //audio.play();
+          } else if (setting == 'Jungle') {
+            audio.src = './music/Jungle.mp3';
+            backgroundImage.style.backgroundImage =
+              'url(./3212groupProjectAIImages/jungleLarge.jpg)';
+            //audio.play();
+          }
+
+          document.getElementById('storyDisplay').innerHTML = `
+                <p>Full Story: ${data.fullStory}</p>
+            `;
+        } else {
+          // Handle error or no data case
+          console.error('No data fetched or error occurred.');
+          storyIndex -= 1;
+        }
+      }
+
+      // Call the function initially
+      displayStoryData(0);
+
+      // Button event listeners
+      document
+        .getElementById('previousButton')
+        .addEventListener('click', () => {
+          if (storyIndex > 0) {
+            storyIndex -= 1;
+            console.log(storyIndex);
+            displayStoryData(storyIndex);
+            let unmuteButton = document.getElementById('unmute');
+            let muteButton = document.getElementById('mute');
+            console.log('pause');
+            document.getElementById('audio').pause();
+            muteButton.classList.add('yesDisplay');
+            muteButton.classList.remove('noDisplay');
+            unmuteButton.classList.remove('yesDisplay');
+            unmuteButton.classList.add('noDisplay');
+          }
+        });
+
+      document.getElementById('nextButton').addEventListener('click', () => {
+        storyIndex += 1;
+        displayStoryData(storyIndex);
+        let unmuteButton = document.getElementById('unmute');
+        let muteButton = document.getElementById('mute');
+        document.getElementById('audio').pause();
+        muteButton.classList.add('yesDisplay');
+        muteButton.classList.remove('noDisplay');
+        unmuteButton.classList.remove('yesDisplay');
+        unmuteButton.classList.add('noDisplay');
+      });
+    </script>
+    <script>
+      // Get the history button element
+      let historyButton = document.getElementById('history');
+
+      // Add event listener to the history button
+      historyButton.addEventListener('click', function () {
+        // Redirect to ./history.html
+        window.location.href = './history.html';
+      });
+    </script>
+    <script>
+      // Get the history button element
+      let homeButton = document.getElementById('home');
+
+      // Add event listener to the history button
+      homeButton.addEventListener('click', function () {
+        window.location.href = './';
+      });
+    </script>
+  </body>
+</html>

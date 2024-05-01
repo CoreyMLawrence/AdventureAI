@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="./favicon.png" sizes="any" type="image/png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-standalone" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-fullscreen" content="yes" />
+    <link rel="apple-touch-icon" sizes="128x128" href="icon-128.png" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>Choose Your Character</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const imageRow = document.querySelector('.imageRow');
+        imageRow.classList.add('fade-in');
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Remove the 'character' variable from session storage on page load
+        sessionStorage.removeItem('character');
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Choose Your Character</h1>
+
+    <div class="imageRow">
+      <div class="imageGroup">
+        <a href="./weapon.html">
+          <img
+            id="wizard"
+            class="circleImage"
+            src="./3212groupProjectAIImages/wizard.jpg"
+          />
+        </a>
+        <h2>Wizard</h2>
+      </div>
+      <div class="imageGroup">
+        <a href="./weapon.html">
+          <img
+            id="cowboy"
+            class="circleImage"
+            src="./3212groupProjectAIImages/cowboy.jpg"
+          />
+        </a>
+        <h2>Cowboy</h2>
+      </div>
+      <div class="imageGroup">
+        <a href="./weapon.html">
+          <img
+            id="tarzan"
+            class="circleImage"
+            src="./3212groupProjectAIImages/tarzan.jpg"
+          />
+        </a>
+        <h2>Tarzan</h2>
+      </div>
+    </div>
+    <!-- <a href="./weapon.html" id="startButton">CONTINUE</a> -->
+  </body>
+</html>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Capitalize first letter function
+    const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
+    // Add event listener to each image
+    const images = document.querySelectorAll('.circleImage');
+    images.forEach(function (image) {
+      image.addEventListener('click', function () {
+        // Reset border color of all images to white
+        images.forEach(function (img) {
+          img.style.borderColor = 'white';
+        });
+
+        // Capitalize the first letter of the clicked image's id
+        const capitalizedId = capitalizeFirstLetter(this.id);
+
+        // Store the capitalized id in a session variable called 'character'
+        sessionStorage.setItem('character', capitalizedId);
+        console.log(sessionStorage.getItem('character'));
+
+        // Change border color of clicked image
+        this.style.borderColor = '#4f0b27';
+      });
+    });
+  });
+</script>
+
