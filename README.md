@@ -16,6 +16,12 @@ Welcome to AdventureAI, the humorous choose-your-own-adventure game powered by G
 - **Variety of Choices**: Explore diverse characters, weapons, sidekicks, and settings to create your own personalized experience.
 - **Immersive Experience**: Enjoy vivid artwork and thematic music tailored to each setting, enhancing the atmosphere of your adventure.
 
+## Story History
+
+AdventureAI keeps a record of all stories played, stored in a MariaDB database accessible via MySQL. Easily browse through past adventures, complete with original theme music and settings.
+
+
 ## Get Started
 
 This is a coding preview, but stay tuned for the live hosting coming soon!
+
