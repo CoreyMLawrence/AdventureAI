@@ -4,16 +4,16 @@ Welcome to AdventureAI, the humorous choose-your-own-adventure game powered by G
 
 ## Screenshots
 
-1. **Start Screen**
+**Start Screen**
    ![Start Screen](./Screenshots/1.png)
 
-2. **Select Your Character**
+**Select Your Character**
    ![Select Your Character](./Screenshots/2.png)
 
-3. **Game Play**
+**Game Play**
    ![Game Play](./Screenshots/3.png)
 
-4. **History**
+**History**
    ![History](./Screenshots/4.png)
 
 
