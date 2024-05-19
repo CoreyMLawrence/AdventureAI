@@ -41,5 +41,5 @@ AdventureAI keeps a record of all stories played, stored in a MariaDB database a
 
 ## Get Started
 
-This is a coding preview, but stay tuned for the live hosting coming soon!
+[PLAY HERE](https://adventureai.duckdns.org)
 
