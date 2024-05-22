@@ -2,6 +2,9 @@
 
 Welcome to AdventureAI, the humorous choose-your-own-adventure game powered by Google's Gemini AI! Get ready to embark on an interactive journey filled with laughter, excitement, and unexpected twists. In this game, you'll explore various settings, encounter quirky characters, wield unique weapons, and enlist the help of sidekicks, all while experiencing a new story every time you play.
 
+<a href="https://adventureai.duckdns.org" target="_blank">PLAY HERE</a>
+
+
 ## Screenshots
 
 **Start Screen**
@@ -38,5 +41,5 @@ AdventureAI keeps a record of all stories played, stored in a MariaDB database a
 
 ## Get Started
 
-This is a coding preview, but stay tuned for the live hosting coming soon!
+[PLAY HERE](https://adventureai.duckdns.org)
 
