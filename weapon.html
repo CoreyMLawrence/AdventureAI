@@ -12,7 +12,7 @@
     <title>Choose Your Weapon</title>
     <link rel="stylesheet" href="styles.css" />
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
+      window.addEventListener('load', function () {
         const imageRow = document.querySelector('.imageRow');
         imageRow.classList.add('fade-in');
       });
@@ -67,7 +67,8 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     // Capitalize first letter function
-    const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+    const capitalizeFirstLetter = (string) =>
+      string.charAt(0).toUpperCase() + string.slice(1);
 
     // Add event listener to each image
     const images = document.querySelectorAll('.circleImage');
@@ -91,4 +92,3 @@
     });
   });
 </script>
-

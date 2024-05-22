@@ -12,7 +12,7 @@
     <title>Choose Your location</title>
     <link rel="stylesheet" href="styles.css" />
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
+      window.addEventListener('load', function () {
         const imageRow = document.querySelector('.imageRow');
         imageRow.classList.add('fade-in');
       });
@@ -77,13 +77,13 @@
               'location',
               (function (clickedImage) {
                 if (clickedImage.id === 'medievalCity') {
-                  sessionStorage.setItem('databaseLocation', 'Medieval City')
+                  sessionStorage.setItem('databaseLocation', 'Medieval City');
                   return 'bustling city in medieval europe filled with a variety of people, and a massive castle on the hill. The city has a multitude of shops, and may even have a city watch to keep the peace, which our main characters will probably disturb';
                 } else if (clickedImage.id === 'westernTown') {
-                  sessionStorage.setItem('databaseLocation', 'Western Town')
+                  sessionStorage.setItem('databaseLocation', 'Western Town');
                   return 'busy cattle town in the american west in the wild west days. The town is filled with mostly good people, but a gang of cattle rustlers is always causing trouble';
                 } else if (clickedImage.id === 'jungle') {
-                  sessionStorage.setItem('databaseLocation', 'Jungle')
+                  sessionStorage.setItem('databaseLocation', 'Jungle');
                   return 'A jungle which seems empty at first, but a tribe of jungle dwelling people are soon found. They are mostly good, but their witchdoctor could be a villan. This is yet to be seen. Also, a massive pyramid may be unveiled';
                 }
               })(this) // Pass the clicked image element as an argument
